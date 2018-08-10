@@ -2,6 +2,8 @@
 
 - 安装
 
-      ➜  ~ yum install vsftpd -y
+```bash
+➜  ~ yum install vsftpd -y
+```
 
 - 配置
