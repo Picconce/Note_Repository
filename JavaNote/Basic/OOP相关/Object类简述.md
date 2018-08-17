@@ -128,6 +128,53 @@ public  class Demo{
         System.out.println(demo.getClass());
     }
 ```
-我们在代码运行时动态地改变对象的指向 那么此时输出就与之前大不一样了
+我们在代码运行时动态地改变对象的指向，那么此时输出就与之前大不一样了
 
 而 `class()` 方法是一个类所具有的方法 （ 通过类名调用而非类实例 ） 即在代码编译时就确定了类的类型
+
+- ### `finalize()`
+
+```java
+protected void finalize() throws Throwable
+    子类可重写 finalize 方法，以配置系统资源或执行其他清除
+    抛出：
+        Throwable - 此方法抛出的 Exception
+```
+当垃圾回收器确定不存在对该对象的更多引用时，由对象的垃圾回收器调用此方法。
+
+- 当 Java 虚拟机已确定尚未终止的任何线程无法再通过任何方法访问此对象时，将调用此方法，除非由于准备终止的其他某个对象或类的终结操作执行了某个操作。
+- `finalize()`  方法可以采取任何操作，其中包括再次使此对象对其他线程可用；
+- `finalize()` 的主要目的是在不可撤消地丢弃对象之前执行清除操作。
+
+简言之： 不建议用 `finalize()` 方法完成“非内存资源”的清理工作，但建议用于：
+
+1. 清理本地对象 ( 通过JNI创建的对象 ) ；
+2. 作为确保某些非内存资源 ( 如Socket、文件等 ) 释放的一个补充：在finalize方法中显式调用其他资源释放方法
+
+#### Tips from API :  Java语言规范并不保证 `finalize()` 方法会被及时地执行、而且根本不会保证它们会被执行。`finalize()` 方法可能会带来性能问题。因为JVM通常在单独的低优先级线程中完成finalize的执行。 
+
+- ### `notify()`
+```java
+    public final void notify()
+    唤醒在此对象监视器上等待的单个线程。如果所有线程都在此对象上等待，则会选择唤醒其中一个线程。选择是任意性的，并在对实现做出决定时发生。线程通过调用其中一个 wait 方法，在对象的监视器上等待。
+    抛出：
+        IllegalMonitorStateException - 如果当前线程不是此对象监视器的所有者
+```
+
+- ### `notifyAll()`
+```java
+    public final void notifyAll()
+    唤醒在此对象监视器上等待的所有线程。线程通过调用其中一个 wait 方法，在对象的监视器上等待。
+    抛出：
+        IllegalMonitorStateException - 如果当前线程不是此对象监视器的所有者。
+```
+
+- ### `wait()`
+```java
+public final void wait() throws InterruptedException
+    在其他线程调用此对象的 notify() 方法或 notifyAll() 方法前，导致当前线程等待。换句话说，此方法的行为就好像它仅执行 wait(0) 调用一样。
+    当前线程必须拥有此对象监视器。该线程发布对此监视器的所有权并等待，直到其他线程通过调用 notify 方法，或 notifyAll 方法通知在此对象的监视器上等待的线程醒来。然后该线程将等到重新获得对监视器的所有权后才能继续执行。
+    抛出：
+        IllegalMonitorStateException - 如果当前线程不是此对象监视器的所有者。
+        InterruptedException - 如果在当前线程等待通知之前或者正在等待通知时，任何线程中断了当前线程。在抛出此异常时，当前线程的中断状态 被清除。
+```
