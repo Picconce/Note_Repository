@@ -68,12 +68,12 @@ protected Object clone() throws CloneNotSupportedException
     返回：
         此实例的一个副本。
     抛出：
-        CloneNotSupportedException - 如果对象的类不支持 Cloneable 接口，则重写 clone 方法的子类也会抛出此异常，以指示无法复制某个实例。
+        CloneNotSupportedException - 如果对象的类不支持 Cloneable 接口，则重写 clone 方法的子类也会抛出此异常，以指示无法复制某个实例
 ```
 
 - 创建并返回此对象的一个副本。“副本”的准确含义可能依赖于对象的类。
 - 一般情况下： `x.clone().equals(x)`为 true，但这并非必须要满足的要求。
-- 按照惯例，返回的对象应该通过调用 super.clone 获得。如果一个类及其所有的超类（Object 除外）都遵守此约定，则 x.clone().getClass() == x.getClass()
+- 按照惯例，返回的对象应该通过调用 `super.clone` 获得。如果一个类及其所有的超类（Object 除外）都遵守此约定，则 `x.clone().getClass() == x.getClass()`
 - 此方法返回的对象应该独立于该正在被复制的对象。要获得此独立性，在 `super.clone` 返回对象之前，有必要对该对象的一个或多个字段进行修改。这通常意味着要复制内部“深层结构”的所有可变对象，并使用对副本的引用替换对这些对象的引用。
 - 如果一个类只包含基本字段或对不变对象的引用，那么通常不需要修改 super.clone 返回的对象中的字段。
 
@@ -100,3 +100,34 @@ public final Class<?> getClass()
 Number n = 0; 
 Class<? extends Number> c = n.getClass();
 ```
+java 中同样能够获得类名的方法除了 `getclass()` 之外还有 `class()` 。两者代码及对比如下：
+```java
+public  class Demo {
+    public static void main(String[] args) {
+    Demo demo = new Demo();
+        System.out.println(demo.getClass());
+        System.out.println(Demo.class);
+    }
+}
+
+```
+
+`getclass()` 方法用到了 java 中的反射，即在运行时确定类型，随着对象的指向进行动态的类型确定。且是一个类的实例拥有的方法。
+
+上述代码将变量指定为 `Demo` 类型 故调用 `getclass()` 方法是能够输出 `Demo` 累的类名 如下代码对比
+
+```java
+class A extends Demo{}
+
+public  class Demo{
+    public static void main(String[] args) {
+    Demo demo = new Demo();
+        System.out.println(demo.getClass());
+    A a = new A();
+        demo = a ;
+        System.out.println(demo.getClass());
+    }
+```
+我们在代码运行时动态地改变对象的指向 那么此时输出就与之前大不一样了
+
+而 `class()` 方法是一个类所具有的方法 （ 通过类名调用而非类实例 ） 即在代码编译时就确定了类的类型
