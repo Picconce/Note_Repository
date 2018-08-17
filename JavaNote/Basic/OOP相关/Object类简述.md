@@ -156,10 +156,13 @@ protected void finalize() throws Throwable
 - ### `notify()`
 ```java
     public final void notify()
-    唤醒在此对象监视器上等待的单个线程。如果所有线程都在此对象上等待，则会选择唤醒其中一个线程。选择是任意性的，并在对实现做出决定时发生。线程通过调用其中一个 wait 方法，在对象的监视器上等待。
     抛出：
         IllegalMonitorStateException - 如果当前线程不是此对象监视器的所有者
 ```
+
+唤醒在此对象监视器上等待的单个线程。如果所有线程都在此对象上等待，则会选择唤醒其中一个线程。
+
+选择是任意性的，并在对实现做出决定时发生。线程通过调用其中一个 wait 方法，在对象的监视器上等待。
 
 - ### `notifyAll()`
 ```java
@@ -172,9 +175,11 @@ protected void finalize() throws Throwable
 - ### `wait()`
 ```java
 public final void wait() throws InterruptedException
-    在其他线程调用此对象的 notify() 方法或 notifyAll() 方法前，导致当前线程等待。换句话说，此方法的行为就好像它仅执行 wait(0) 调用一样。
-    当前线程必须拥有此对象监视器。该线程发布对此监视器的所有权并等待，直到其他线程通过调用 notify 方法，或 notifyAll 方法通知在此对象的监视器上等待的线程醒来。然后该线程将等到重新获得对监视器的所有权后才能继续执行。
+    在其他线程调用此对象的 notify() 方法或 notifyAll() 方法前，导致当前线程等待。
     抛出：
         IllegalMonitorStateException - 如果当前线程不是此对象监视器的所有者。
         InterruptedException - 如果在当前线程等待通知之前或者正在等待通知时，任何线程中断了当前线程。在抛出此异常时，当前线程的中断状态 被清除。
 ```
+当前线程必须拥有此对象监视器。
+
+该线程发布对此监视器的所有权并等待，直到其他线程通过调用 notify 方法，或 notifyAll 方法通知在此对象的监视器上等待的线程醒来。然后该线程将等到重新获得对监视器的所有权后才能继续执行
