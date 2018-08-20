@@ -1,7 +1,6 @@
+# 用户和组管理
 
-### 用户和组管理
-
-资源分派：
+### 资源分派：
 
 - Authentication 认证
 - Authorization   授权
@@ -9,7 +8,7 @@
 
 token / identity  ( username / password )
 
-Linux用户 ： Username/ UID
+#### Linux用户 ： Username/ UID
 
 > 管理员		root , 0
 >
@@ -23,7 +22,7 @@ Linux用户 ： Username/ UID
 >>
 > > > 交互式登录
 
-Linux组 ： Groupname / GID
+#### Linux组 ： Groupname / GID
 
 > 管理员组 ： root ，0
 >
@@ -33,7 +32,7 @@ Linux组 ： Groupname / GID
 > >
 > > 普通组 ： 500+
 
-Linux安全上下文
+#### Linux安全上下文
 
 > 运行中的程序 ：进程 ( process )
 >
@@ -41,7 +40,7 @@ Linux安全上下文
 > >
 > > 进程锁能够访问到的所有资源的权限取决于进程的发起者的身份
 
-Linux组的类别
+#### Linux组的类别
 
 > 用户基本组( 主组 )
 >
