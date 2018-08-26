@@ -1,10 +1,7 @@
-# Linux基础
+# Linux文件系统
+### 参考书：FHS
 
-## Linux文件系统
-
-### 根文件系统 ( rootfs   root filesystem)
-
-### FHS( 参考书 )
+### 根文件系统 ( rootfs   root filesystem )
 
 `/etc`   `/usr`   `/var`   `/root`   `/home`    `/dev`  
 
