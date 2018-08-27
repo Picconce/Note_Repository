@@ -107,7 +107,7 @@ tee [OPTION]...[FILE]
 
 - `sort` 命令
 
-  ```ba
+  ```bash
   sort [OPTION]...[FILE]...
   
   	-f 忽略字符大小写
