@@ -15,10 +15,30 @@ let val=3+4
 echo $val
 7
 ```
-- (2) `val=$[算术表达式]`
+- （2） `val=$[算术表达式]`
 ```bash
 # val=$[算术表达式]
 val=$[3+4]
 echo $val
 7
+```
+- （3） `val=$((算术表达式))`
+```bash
+# val=$((算术表达式))
+val=$((3+4))
+echo $val
+7
+```
+- （4） `val=$(expr arg1 arg2  arg3  arg4...)` 
+```bash
+# val=$(expr arg1 arg2  arg3  arg4...)
+# 使用这种方式，需要注意 “ * ” 需要进行转义处理
+# arg1 表示被操作数, arg2 表示符号， arg3 表示第二个操作数，可以有多个操作数
+val=$(expr 3 + 4 )
+echo $val
+7
+# 乘法示例
+val_02=$(expr 3 \* 4 )
+echo $val_02
+12
 ```
