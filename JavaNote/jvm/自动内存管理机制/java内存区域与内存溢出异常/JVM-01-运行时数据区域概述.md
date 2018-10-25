@@ -1,5 +1,19 @@
 # JVM 之运行时数据区域概述
 
+
+- [JVM 之运行时数据区域概述](#jvm-之运行时数据区域概述)
+    - [概述](#概述)
+    - [程序计数器](#程序计数器)
+        - [`Tips of Program Counter Register`](#tips-of-program-counter-register)
+    - [java 虚拟机栈](#java-虚拟机栈)
+        - [局部变量表](#局部变量表)
+        - [`Tips of Local variable table`](#tips-of-local-variable-table)
+    - [本地方法栈](#本地方法栈)
+    - [java 堆](#java-堆)
+    - [方法区](#方法区)
+    - [运行时常量池](#运行时常量池)
+    - [直接内存](#直接内存)
+
 ## 概述
 java 虚拟机 JVM 在执行java程序的过程中，会把它所管理的内存划分为若干个不同的数据区域。
 
